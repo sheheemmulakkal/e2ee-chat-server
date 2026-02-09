@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import { setupSocketIO } from './socket';
 import { Server as SocketIOServer } from 'socket.io';
-import { userRouter } from './routes/user.route';
+import { apiRouter } from './routes';
 import { errorHandler } from './error_handler/error.handler';
 import "./setup/db.setup";
 
@@ -20,7 +20,7 @@ setupSocketIO(io);
 // Middleware
 app.use(express.json());
 
-app.use('/api/users', userRouter);
+app.use('/api', apiRouter);
 // Example REST API route
 app.get('/api/hello', (req, res) => {
     res.json({ message: 'Hello from API!' });
